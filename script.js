@@ -761,3 +761,88 @@ function initializeReadMore() {
         });
     });
 }
+
+// Enhanced PDF Download Functionality
+    function initializePDFDownloads() {
+        const pdfLinks = document.querySelectorAll('.pdf-link');
+        
+        pdfLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                // Add downloading state for visual feedback
+                this.classList.add('downloading');
+                
+                // Get file info
+                const href = this.getAttribute('href');
+                const fileName = this.getAttribute('download');
+                
+                // Check if it's an external URL
+                if (href && href.startsWith('http')) {
+                    // For external URLs, we'll open in new tab and show feedback
+                    window.open(href, '_blank');
+                    
+                    // Update UI feedback
+                    setTimeout(() => {
+                        this.classList.remove('downloading');
+                        this.classList.add('downloaded');
+                        
+                        // Reset after 2 seconds
+                        setTimeout(() => {
+                            this.classList.remove('downloaded');
+                        }, 2000);
+                    }, 500);
+                    
+                    // Prevent default if we handled it
+                    e.preventDefault();
+                    return;
+                }
+                
+                // For local files, handle download normally
+                if (href && href !== '#') {
+                    // Create a temporary link for forced download
+                    const tempLink = document.createElement('a');
+                    tempLink.href = href;
+                    if (fileName) {
+                        tempLink.download = fileName;
+                    }
+                    tempLink.style.display = 'none';
+                    
+                    // Add to DOM, click, and remove
+                    document.body.appendChild(tempLink);
+                    tempLink.click();
+                    document.body.removeChild(tempLink);
+                    
+                    // Update UI feedback
+                    setTimeout(() => {
+                        this.classList.remove('downloading');
+                        this.classList.add('downloaded');
+                        
+                        // Reset after 2 seconds
+                        setTimeout(() => {
+                            this.classList.remove('downloaded');
+                        }, 2000);
+                    }, 500);
+                    
+                    // Prevent default link behavior
+                    e.preventDefault();
+                } else if (href === '#') {
+                    // Handle placeholder links
+                    alert('This document is not yet available for download.');
+                    this.classList.remove('downloading');
+                    e.preventDefault();
+                }
+            });
+            
+            // Add hover effect enhancement
+            link.addEventListener('mouseenter', function() {
+                const href = this.getAttribute('href');
+                if (href && href.startsWith('http')) {
+                    this.title = 'Click to download: ' + (this.getAttribute('download') || 'Document');
+                }
+            });
+        });
+    }
+
+    // Initialize PDF downloads
+    initializePDFDownloads();
+
+    // ...existing code...

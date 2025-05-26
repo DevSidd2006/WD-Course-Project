@@ -1237,369 +1237,612 @@ footer {
     }
 }
 
-/* Footer Styles */
-.footer-section {
-    flex: 1; /* Allow sections to grow and fill available space */
-    min-width: 200px; /* Minimum width for each section */
-    margin-bottom: 20px; /* Space below each section when wrapped */
-}
-
-.footer-section h3 {
-    font-size: 18px;
-    margin-bottom: 15px;
-    border-bottom: 1px solid #0056b3; /* Lighter blue for separator */
-    padding-bottom: 10px;
-}
-
-.footer-section ul {
-    list-style: none;
-    padding: 0;
-}
-
-.footer-section ul li a {
-    color: #e0e0e0; /* Lighter text color for links */
-    text-decoration: none;
-    display: block;
-    margin-bottom: 8px;
-    transition: color 0.3s;
-}
-
-.footer-section ul li a:hover {
-    color: #fff; /* White on hover */
-    text-decoration: underline;
-}
-
-.footer-section p {
-    font-size: 14px;
-    line-height: 1.6;
-    margin-bottom: 10px;
-    color: #e0e0e0; 
-}
-
-.social-links a {
-    color: white;
-    font-size: 20px;
-    margin-right: 15px;
-    transition: color 0.3s;
-}
-
-.social-links a:hover {
-    color: #00aaff; 
-}
-
-.footer-logos {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: flex-start;
+/* PDF Download Links */
+.pdf-link {
+    display: inline-flex;
     align-items: center;
-}
-
-.footer-logos img {
-    max-height: 30px;
-    max-width: 60px;
-    object-fit: contain;
-    opacity: 0.8;
-    transition: opacity 0.3s;
-}
-
-.footer-logos img:hover {
-    opacity: 1;
-}
-
-.footer-bottom {
-    text-align: center;
-    padding-top: 20px;
-    margin-top: 0px;
-    border-top: 1px solid #0056b3; 
+    gap: 8px;
+    padding: 8px 12px;
+    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+    color: white !important;
+    text-decoration: none !important;
+    border-radius: 6px;
     font-size: 13px;
-    color: #c0c0c0; 
-}
-
-
-.special-programs {
-    background: linear-gradient(135deg, #f8f9fa 60%, #e0cba8 100%);
-    padding: 50px 0 60px 0;
-    margin-top: 20px;
-    border-radius: 0 0 30px 30px;
-    padding-bottom: 20px; 
-    box-shadow: 0 8px 32px rgba(122,82,40,0.08);
-}
-
-.programs-grid {
-    display: flex;
-    gap: 32px;
-    justify-content: space-evenly;
-}
-
-.program-item {
-    background: #fff;
-    border-radius: 18px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(220, 53, 69, 0.2);
+    border: 1px solid #dc3545;
+    position: relative;
     overflow: hidden;
-    box-shadow: 0 4px 24px rgba(122,82,40,0.10);
-    transition: transform 0.25s, box-shadow 0.25s;
-    border: 2px solid #e0cba8;
+    cursor: pointer;
+    /* Force download behavior */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Download indicator animation */
+.pdf-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s;
+}
+
+.pdf-link:hover::before {
+    left: 100%;
+}
+
+.pdf-link:hover {
+    background: linear-gradient(135deg, #c82333 0%, #a71e2a 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(220, 53, 69, 0.3);
+    color: white !important;
+    text-decoration: none !important;
+}
+
+.pdf-link:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(220, 53, 69, 0.2);
+}
+
+/* Enhanced download icon with animation */
+.pdf-link .fas {
+    font-size: 14px;
+    animation: downloadPulse 2s infinite;
+}
+
+@keyframes downloadPulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.1); opacity: 0.8; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Download progress indicator */
+.pdf-link.downloading {
+    background: linear-gradient(135deg, #ffc107 0%, #e0a800 100%);
+    pointer-events: none;
+}
+
+.pdf-link.downloading::after {
+    content: "Downloading...";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 10px;
+    font-weight: 600;
+    color: #333;
+    background: rgba(255,255,255,0.9);
+    padding: 2px 6px;
+    border-radius: 3px;
+    white-space: nowrap;
+}
+
+/* Success indicator */
+.pdf-link.downloaded {
+    background: linear-gradient(135deg, #28a745 0%, #1e7e34 100%);
+    animation: downloadSuccess 0.5s ease-in-out;
+}
+
+@keyframes downloadSuccess {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* File type specific styling */
+.pdf-link[data-file-type="pdf"] {
+    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+}
+
+.pdf-link[data-file-type="doc"] {
+    background: linear-gradient(135deg, #2b5797 0%, #1e3a5f 100%);
+}
+
+.pdf-link[data-file-type="xls"] {
+    background: linear-gradient(135deg, #217346 0%, #155724 100%);
+}
+
+/* File size indicator */
+.pdf-link .file-size {
+    font-size: 10px;
+    opacity: 0.8;
+    margin-left: 4px;
+    font-weight: 400;
+}
+
+/* Download file type indicators - Enhanced */
+.pdf-link[href$=".pdf"]::after,
+.pdf-link[data-file-type="pdf"]::after {
+    content: "PDF";
+    font-size: 10px;
+    background: rgba(255,255,255,0.9);
+    color: #dc3545;
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-weight: 700;
+    margin-left: 4px;
+    border: 1px solid rgba(220, 53, 69, 0.3);
+}
+
+.pdf-link[href$=".doc"]::after,
+.pdf-link[href$=".docx"]::after,
+.pdf-link[data-file-type="doc"]::after {
+    content: "DOC";
+    font-size: 10px;
+    background: rgba(255,255,255,0.9);
+    color: #2b5797;
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-weight: 700;
+    margin-left: 4px;
+    border: 1px solid rgba(43, 87, 151, 0.3);
+}
+
+.pdf-link[href$=".xls"]::after,
+.pdf-link[href$=".xlsx"]::after,
+.pdf-link[data-file-type="xls"]::after {
+    content: "XLS";
+    font-size: 10px;
+    background: rgba(255,255,255,0.9);
+    color: #217346;
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-weight: 700;
+    margin-left: 4px;
+    border: 1px solid rgba(33, 115, 70, 0.3);
+}
+
+/* Enhanced News Item Styling for Downloads */
+.news-item {
+    background: white;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
     position: relative;
 }
 
-.program-item:hover {
-    transform: translateY(-8px) scale(1.03);
-    box-shadow: 0 8px 32px rgba(122,82,40,0.18);
-    border-color: #7a5228;
-    z-index: 2;
+.news-item:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transform: translateY(-2px);
+    border-color: #007bff;
 }
 
-.program-item a {
-    display: block;
-    text-decoration: none;
-    color: inherit;
-    height: 100%;
+.news-item.has-download {
+    border-left: 3px solid #dc3545;
 }
 
-.program-content {
-    text-align: center;
-    background: linear-gradient(120deg, #fffbe6 60%, #f5e3c3 100%);
-    color: #7a5228;
-    min-height: 120px;
+.news-item.has-download::before {
+    content: "\f019";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    color: #dc3545;
+    font-size: 12px;
+    opacity: 0.7;
+}
+
+/* News Meta Enhanced */
+.news-meta {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
-    transition: background 0.3s;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #f1f3f4;
 }
 
-.program-item:hover .program-content {
-    background: linear-gradient(120deg, #f5e3c3 60%, #fffbe6 100%);
-    color: #4d320f;
+.news-meta .date-info {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: #6c757d;
+    font-size: 12px;
+    font-weight: 500;
 }
 
-.program-content h3 {
-    font-size: 1.2rem;
-    font-weight: 700;
-    text-transform: capitalize;
-    letter-spacing: 0.5px;
-    margin: 0;
-    margin-bottom: 0;
-    line-height: 1.3;
-    transition: color 0.3s;
+.news-meta .date-info .fas {
+    color: #007bff;
+    font-size: 12px;
 }
 
-
-.program-item:hover::before {
-    color: #ffd700;
-    opacity: 0.32;
+/* Download Section */
+.download-section {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
 }
 
-@media (max-width: 600px) {
-    .special-programs {
-        padding: 30px 0 30px 0;
-        border-radius: 0 0 18px 18px;
-    }
-    .programs-grid {
-        gap: 16px;
-    }
-    .program-content {
-        padding: 22px 8px 18px 8px;
-        min-height: 80px;
-    }
-    .program-content h3 {
-        font-size: 1rem;
-    }
-}
-
-/* Responsive Design */
-@media (max-width: 1024px) {
-    .grid-layout {
-        grid-template-columns: 1fr;
-    }
-    
-    .left-column, .right-column {
-        order: 2;
-    }
-    
-    .center-column {
-        order: 1;
-    }
-}
-
+/* Responsive adjustments for PDF links and schemes */
 @media (max-width: 768px) {
-    .header-content {
+    .main-nav a.highlight {
+        font-size: 14px;
+        padding: 6px 12px;
+        letter-spacing: 0.3px;
+    }
+    
+    .news-meta {
         flex-direction: column;
-        text-align: center;
-        gap: 20px;
+        align-items: flex-start;
+        gap: 8px;
     }
     
-    .logo-section {
-        flex-direction: column;
-        text-align: center;
+    .pdf-link {
+        font-size: 12px;
+        padding: 6px 10px;
+        width: 100%;
+        justify-content: center;
     }
     
-    .nav-images-container {
-        max-width: 100%;
-        justify-content: center; 
-        flex-wrap: wrap;
+    .news-item h3 {
+        font-size: 15px;
+        padding-right: 25px; /* Account for download icon */
     }
     
-    .nav-images-container img {
-        max-height: 25px; 
-        max-width: 50px;
-    }
-    
-    .main-nav {
-        display: none;
-    }
-    
-    .main-nav.show {
-        display: block;
-    }
-    
-    .main-nav ul li a {
-        padding: 15px 20px;
+    .news-item.featured h3 {
         font-size: 16px;
     }
     
-    .minister-cards {
-        grid-template-columns: 1fr;
-    }
-    
-    .banner-controls {
-        display: none;
-    }
-    
-    .ministry-info h1 {
-        font-size: 20px;
-    }
-    
-    .ministry-info h2 {
-        font-size: 16px;
+    .download-section {
+        width: 100%;
+        justify-content: center;
     }
 }
 
 @media (max-width: 480px) {
-    .container {
-        padding: 0 15px;
+    .main-nav a.highlight {
+        font-size: 12px;
+        padding: 5px 10px;
+        letter-spacing: 0.2px;
     }
     
-    .gov-links {
-        flex-direction: column;
-        text-align: center;
-        gap: 10px;
+    .agri-news {
+        padding: 16px;
     }
     
-    .quick-links {
-        flex-direction: column;
-        gap: 10px;
+    .news-item {
+        padding: 16px;
     }
     
-    .programs-grid {
-        grid-template-columns: 1fr;
+    .pdf-link {
+        font-size: 11px;
+        padding: 5px 8px;
     }
     
-    .hero-banner {
-        height: 250px;
+    .pdf-link .file-size {
+        display: none; /* Hide file size on very small screens */
     }
 }
 
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.animate {
-    animation: fadeInUp 0.6s ease forwards;
-}
-
-
-.news-list::-webkit-scrollbar {
-    width: 6px;
-}
-
-.news-list::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 3px;
-}
-
-.news-list::-webkit-scrollbar-thumb {
-    background: #007bff;
-    border-radius: 3px;
-}
-
-.news-list::-webkit-scrollbar-thumb:hover {
-    background: #0056b3;
-}
-
-
-.new-initiatives {
-    background-color: #f4f9f4;
-    padding: 40px 0;
-    margin-bottom: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-}
-
-.initiative-content {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-}
-
-.initiative-content img {
-    flex: 1 1 auto;
-    width: 100%;
-    max-width: 100%;
-    height: 220px;
-    max-height: 320px;
-    min-height: 160px;
-    object-fit: cover;
-    border-radius: 10px;
-    margin-bottom: 10px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.10);
-    background: #f8f8f8;
-}
-
-@media (max-width: 1024px) {
-    .initiative-content img {
-        height: 160px;
-        max-height: 200px;
-        min-height: 100px;
-    }
-}
-.schemes-list ul li {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%; 
-}
-
-.schemes-list ul {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    align-items: stretch; 
-}
-
+/* Schemes Navigation Item - Maintain Text Format */
 .main-nav a.highlight {
     background: linear-gradient(90deg, #46eb43, #05bd52, #46eb43);
     color: #fff !important;
     border-radius: 4px;
     font-weight: 700;
-    box-shadow: 0 2px 8px rgba(0,123,255,0.08);
-    transition: background-position 0.5s, color 0.2s;
+    box-shadow: 0 2px 8px rgba(70, 235, 67, 0.3);
+    transition: all 0.3s ease;
     background-size: 200% 100%;
     background-position: 0% 50%;
     border: 2px solid transparent;
     position: relative;
     z-index: 1;
     overflow: hidden;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-family: 'Roboto', Arial, sans-serif;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
 }
+
 .main-nav a.highlight:hover {
     background-position: 100% 50%;
-    color: #fff;
+    color: #fff !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(70, 235, 67, 0.4);
+}
+
+/* PDF Download Links - Enhanced for Actual Downloads */
+.pdf-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+    color: white !important;
+    text-decoration: none !important;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(220, 53, 69, 0.2);
+    border: 1px solid #dc3545;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    /* Force download behavior */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Download indicator animation */
+.pdf-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s;
+}
+
+.pdf-link:hover::before {
+    left: 100%;
+}
+
+.pdf-link:hover {
+    background: linear-gradient(135deg, #c82333 0%, #a71e2a 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(220, 53, 69, 0.3);
+    color: white !important;
+    text-decoration: none !important;
+}
+
+.pdf-link:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(220, 53, 69, 0.2);
+}
+
+/* Enhanced download icon with animation */
+.pdf-link .fas {
+    font-size: 14px;
+    animation: downloadPulse 2s infinite;
+}
+
+@keyframes downloadPulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.1); opacity: 0.8; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Download progress indicator */
+.pdf-link.downloading {
+    background: linear-gradient(135deg, #ffc107 0%, #e0a800 100%);
+    pointer-events: none;
+}
+
+.pdf-link.downloading::after {
+    content: "Downloading...";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 10px;
+    font-weight: 600;
+    color: #333;
+    background: rgba(255,255,255,0.9);
+    padding: 2px 6px;
+    border-radius: 3px;
+    white-space: nowrap;
+}
+
+/* Success indicator */
+.pdf-link.downloaded {
+    background: linear-gradient(135deg, #28a745 0%, #1e7e34 100%);
+    animation: downloadSuccess 0.5s ease-in-out;
+}
+
+@keyframes downloadSuccess {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* File type specific styling */
+.pdf-link[data-file-type="pdf"] {
+    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+}
+
+.pdf-link[data-file-type="doc"] {
+    background: linear-gradient(135deg, #2b5797 0%, #1e3a5f 100%);
+}
+
+.pdf-link[data-file-type="xls"] {
+    background: linear-gradient(135deg, #217346 0%, #155724 100%);
+}
+
+/* File size indicator */
+.pdf-link .file-size {
+    font-size: 10px;
+    opacity: 0.8;
+    margin-left: 4px;
+    font-weight: 400;
+}
+
+/* Download file type indicators - Enhanced */
+.pdf-link[href$=".pdf"]::after,
+.pdf-link[data-file-type="pdf"]::after {
+    content: "PDF";
+    font-size: 10px;
+    background: rgba(255,255,255,0.9);
+    color: #dc3545;
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-weight: 700;
+    margin-left: 4px;
+    border: 1px solid rgba(220, 53, 69, 0.3);
+}
+
+.pdf-link[href$=".doc"]::after,
+.pdf-link[href$=".docx"]::after,
+.pdf-link[data-file-type="doc"]::after {
+    content: "DOC";
+    font-size: 10px;
+    background: rgba(255,255,255,0.9);
+    color: #2b5797;
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-weight: 700;
+    margin-left: 4px;
+    border: 1px solid rgba(43, 87, 151, 0.3);
+}
+
+.pdf-link[href$=".xls"]::after,
+.pdf-link[href$=".xlsx"]::after,
+.pdf-link[data-file-type="xls"]::after {
+    content: "XLS";
+    font-size: 10px;
+    background: rgba(255,255,255,0.9);
+    color: #217346;
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-weight: 700;
+    margin-left: 4px;
+    border: 1px solid rgba(33, 115, 70, 0.3);
+}
+
+/* Enhanced News Item Styling for Downloads */
+.news-item {
+    background: white;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.news-item:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transform: translateY(-2px);
+    border-color: #007bff;
+}
+
+.news-item.has-download {
+    border-left: 3px solid #dc3545;
+}
+
+.news-item.has-download::before {
+    content: "\f019";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    color: #dc3545;
+    font-size: 12px;
+    opacity: 0.7;
+}
+
+/* News Meta Enhanced */
+.news-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #f1f3f4;
+}
+
+.news-meta .date-info {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: #6c757d;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.news-meta .date-info .fas {
+    color: #007bff;
+    font-size: 12px;
+}
+
+/* Download Section */
+.download-section {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+/* Responsive adjustments for PDF links and schemes */
+@media (max-width: 768px) {
+    .main-nav a.highlight {
+        font-size: 14px;
+        padding: 6px 12px;
+        letter-spacing: 0.3px;
+    }
+    
+    .news-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .pdf-link {
+        font-size: 12px;
+        padding: 6px 10px;
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .news-item h3 {
+        font-size: 15px;
+        padding-right: 25px; /* Account for download icon */
+    }
+    
+    .news-item.featured h3 {
+        font-size: 16px;
+    }
+    
+    .download-section {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-nav a.highlight {
+        font-size: 12px;
+        padding: 5px 10px;
+        letter-spacing: 0.2px;
+    }
+    
+    .agri-news {
+        padding: 16px;
+    }
+    
+    .news-item {
+        padding: 16px;
+    }
+    
+    .pdf-link {
+        font-size: 11px;
+        padding: 5px 8px;
+    }
+    
+    .pdf-link .file-size {
+        display: none; /* Hide file size on very small screens */
+    }
 }
