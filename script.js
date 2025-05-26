@@ -347,13 +347,13 @@ document.addEventListener('DOMContentLoaded', function() {
             socialSection.textContent = isHindi ? 'सोशल मीडिया' : 'Social Media';
         }
 
-        // Update read more button text and reinitialize functionality
+        
         const readMoreButtons = document.querySelectorAll('.read-more-btn');
         readMoreButtons.forEach(link => {
             link.textContent = isHindi ? 'और देखें' : 'Read More';
         });
         
-        // Reinitialize read more functionality after language change
+        
         initializeReadMore();
     }
 
@@ -743,13 +743,13 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }    enhanceAccessibility();
 
-    // Initialize read more functionality for scheme descriptions
+    
     initializeReadMore();
 
     console.log('Agriwelfare website initialized successfully');
 });
 
-// Function to initialize read more functionality
+
 function initializeReadMore() {
     const readMoreButtons = document.querySelectorAll('.read-more-btn');
     readMoreButtons.forEach(button => {
@@ -762,43 +762,43 @@ function initializeReadMore() {
     });
 }
 
-// Enhanced PDF Download Functionality
+
     function initializePDFDownloads() {
         const pdfLinks = document.querySelectorAll('.pdf-link');
         
         pdfLinks.forEach(link => {
             link.addEventListener('click', function(e) {
-                // Add downloading state for visual feedback
+                
                 this.classList.add('downloading');
                 
-                // Get file info
+                
                 const href = this.getAttribute('href');
                 const fileName = this.getAttribute('download');
                 
-                // Check if it's an external URL
+                
                 if (href && href.startsWith('http')) {
-                    // For external URLs, we'll open in new tab and show feedback
+                    
                     window.open(href, '_blank');
                     
-                    // Update UI feedback
+                    
                     setTimeout(() => {
                         this.classList.remove('downloading');
                         this.classList.add('downloaded');
                         
-                        // Reset after 2 seconds
+                        
                         setTimeout(() => {
                             this.classList.remove('downloaded');
                         }, 2000);
                     }, 500);
                     
-                    // Prevent default if we handled it
+                    
                     e.preventDefault();
                     return;
                 }
                 
-                // For local files, handle download normally
+                
                 if (href && href !== '#') {
-                    // Create a temporary link for forced download
+                    
                     const tempLink = document.createElement('a');
                     tempLink.href = href;
                     if (fileName) {
@@ -806,33 +806,33 @@ function initializeReadMore() {
                     }
                     tempLink.style.display = 'none';
                     
-                    // Add to DOM, click, and remove
+                    
                     document.body.appendChild(tempLink);
                     tempLink.click();
                     document.body.removeChild(tempLink);
                     
-                    // Update UI feedback
+                    
                     setTimeout(() => {
                         this.classList.remove('downloading');
                         this.classList.add('downloaded');
                         
-                        // Reset after 2 seconds
+                        
                         setTimeout(() => {
                             this.classList.remove('downloaded');
                         }, 2000);
                     }, 500);
                     
-                    // Prevent default link behavior
+                    
                     e.preventDefault();
                 } else if (href === '#') {
-                    // Handle placeholder links
+                    
                     alert('This document is not yet available for download.');
                     this.classList.remove('downloading');
                     e.preventDefault();
                 }
             });
             
-            // Add hover effect enhancement
+            
             link.addEventListener('mouseenter', function() {
                 const href = this.getAttribute('href');
                 if (href && href.startsWith('http')) {
@@ -842,7 +842,7 @@ function initializeReadMore() {
         });
     }
 
-    // Initialize PDF downloads
+    
     initializePDFDownloads();
 
-    // ...existing code...
+    
