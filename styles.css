@@ -1,0 +1,1589 @@
+/* Enhanced font loading for bilingual support */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@300;400;500;700&display=swap');
+
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #fff;
+}
+
+/* Dropdown Menu Styles */
+.main-nav ul li.dropdown {
+    position: relative;
+}
+
+.main-nav ul li .dropdown-menu {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 100%; /* Position below the parent */
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-top: none;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    min-width: 250px; /* Adjust as needed */
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.main-nav ul li.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.main-nav ul li .dropdown-menu li {
+    width: 100%;
+}
+
+.main-nav ul li .dropdown-menu li a {
+    display: block;
+    padding: 10px 15px;
+    color: #333;
+    text-decoration: none;
+    white-space: nowrap;
+    font-size: 14px; /* Adjust as needed */
+}
+
+.main-nav ul li .dropdown-menu li a:hover {
+    background-color: #f5f5f5;
+    color: #007bff;
+}
+
+/* Language-specific typography */
+html[lang="hi"] {
+    font-family: 'Noto Sans Devanagari', 'Roboto', Arial, sans-serif;
+}
+
+html[lang="en"] {
+    font-family: 'Roboto', Arial, sans-serif;
+}
+
+/* Improved text rendering for mixed scripts */
+.ministry-info h1,
+.ministry-info h2,
+.ministry-info h3,
+.ministry-info h4,
+.ministry-info h5 {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Better spacing for Devanagari text */
+html[lang="hi"] .main-nav a,
+html[lang="hi"] .footer-section h3,
+html[lang="hi"] .org-info h2,
+html[lang="hi"] .agri-news h2,
+html[lang="hi"] .agri-reforms h2,
+html[lang="hi"] .farming-agreement h2 {
+    letter-spacing: 0.5px;
+    line-height: 1.6;
+}
+
+/* Language switching transition effects */
+.ministry-info,
+.main-nav,
+.org-info,
+.agri-news,
+.agri-reforms,
+.farming-agreement,
+.footer-section {
+    transition: opacity 0.2s ease-in-out;
+}
+
+.language-switching {
+    opacity: 0.7;
+}
+
+.container {
+    width: 90%; /* Example: or a fixed width like 1140px */
+    max-width: 1200px; /* Example: maximum width for larger screens */
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 15px; /* Optional: for gutter spacing */
+    padding-right: 15px; /* Optional: for gutter spacing */
+}
+
+/* Government Links Bar */
+.gov-links-bar {
+    background-color: #003d82;
+    padding: 8px 0;
+    font-size: 12px;
+}
+
+.gov-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.gov-links a {
+    color: white;
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    transition: background-color 0.3s;
+}
+
+.gov-links a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Top Bar */
+.top-bar {
+    background-color: #f8f9fa;
+    padding: 8px 0;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.top-bar .container {
+    display: flex;
+    justify-content: space-between;    align-items: center;
+}
+
+.language-selector {
+    display: flex;
+    gap: 10px;
+}
+
+.language-selector span {
+    margin-right: 15px;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    border: 1px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.language-selector span:hover {
+    background-color: #f0f8ff;
+    border-color: #007bff;
+}
+
+.language-selector span.active {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+/* Language switching animation */
+.language-selector span::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s;
+}
+
+.language-selector span:hover::before {
+    left: 100%;
+}
+
+.quick-links {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.quick-links a {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+.font-controls {
+    display: flex;
+    gap: 5px;
+}
+
+.font-size {
+    padding: 2px 6px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    background: white;
+}
+
+/* Main Header */
+.main-header {
+    background-color: white;
+    border-bottom: 2px solid #007bff;
+    padding: 15px 0;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Center vertically */
+    margin-bottom: 20px;
+    gap: 15px;
+    flex-wrap: nowrap;
+    overflow: hidden;
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Reduced gap to save space */
+    flex-shrink: 0; /* Prevent shrinking */
+
+/* Responsive Design - Basic Media Queries */
+
+/* For tablets and smaller desktops */
+@media (max-width: 992px) {
+    .main-nav ul {
+        flex-wrap: wrap; /* Allow nav items to wrap */
+        justify-content: center; /* Center nav items when wrapped */
+    }
+    .main-nav ul li {
+        margin-bottom: 5px; /* Add some space when items wrap */
+    }
+    .header-content {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .nav-images-container {
+        margin-top: 10px;
+        justify-content: center;
+    }
+    .ministry-info h1 {
+        font-size: 1.5em; /* Adjust font size for smaller screens */
+    }
+}
+
+/* For mobile phones */
+@media (max-width: 768px) {
+    .top-bar .container {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .language-selector, .quick-links {
+        width: 100%;
+        justify-content: center;
+    }
+    .main-nav ul li a {
+        padding: 8px 10px; /* Smaller padding for nav links */
+        font-size: 0.9em;
+    }
+    .main-nav ul li .dropdown-menu {
+        min-width: 200px; /* Adjust dropdown width for smaller screens */
+    }
+    .main-nav ul li .dropdown-menu li a {
+        font-size: 13px; /* Adjust dropdown item font size */
+    }
+    .content-grid .grid-layout {
+        grid-template-columns: 1fr; /* Stack columns on mobile */
+    }
+    .left-column, .center-column, .right-column {
+        margin-bottom: 20px;
+    }
+    .footer-columns {
+        flex-direction: column;
+        text-align: center;
+    }
+    .footer-section {
+        margin-bottom: 15px;
+    }
+}
+}
+
+.emblem {
+    height: 80px !important;
+    width: 80px !important;
+    max-width: none;
+    max-height: none;
+}
+
+@media (max-width: 768px) {
+    .emblem {
+        height: 60px !important;
+        width: 60px !important;
+    }
+}
+
+.ministry-info {
+    flex: 1;
+}
+
+.ministry-info h1 {
+    font-size: 18px; /* Further decreased font size */
+    color: #003d82;
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+.ministry-info h2 {
+    font-size: 14px; /* Further decreased font size */
+    color: #007bff;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.ministry-info h3 {
+    font-size: 12px; /* Further decreased font size */
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.ministry-info h4, .ministry-info h5 {
+    font-size: 10px; /* Further decreased font size */
+    color: #888;
+    margin-bottom: 3px;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icons a {
+    color: #007bff;
+    font-size: 24px;
+    transition: color 0.3s;
+}
+
+.social-icons a:hover {
+    color: #003d82;
+}
+
+/* Main Navigation */
+.main-nav {
+    background-color: #f8f9fa; /* Light background for the nav bar */
+    padding: 10px 0; /* Padding above and below the nav items */
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    /* text-align: center; */ /* This might not be needed if the inner container handles alignment */
+    /* width: 100%; */ /* Block elements like nav are 100% width by default */
+}
+
+/* Main Navigation - One Row, Scrollable on Overflow */
+.main-nav ul {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    white-space: nowrap;
+    justify-content: flex-start;
+    gap: 0;
+    scrollbar-width: thin;
+    scrollbar-color: #007bff #f8f9fa;
+}
+
+.main-nav ul::-webkit-scrollbar {
+    height: 6px;
+}
+.main-nav ul::-webkit-scrollbar-thumb {
+    background: #007bff;
+    border-radius: 3px;
+}
+.main-nav ul::-webkit-scrollbar-track {
+    background: #f8f9fa;
+}
+
+.main-nav ul li {
+    margin: 0 8px;
+}
+
+@media (max-width: 1024px) {
+    .main-nav ul {
+        font-size: 15px;
+    }
+}
+@media (max-width: 768px) {
+    .main-nav ul {
+        font-size: 14px;
+        padding: 0 4px;
+    }
+    .main-nav ul li {
+        margin: 0 4px;
+    }
+}
+
+.nav-images-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, auto);
+    gap: 12px 18px;
+    align-items: center;
+    justify-items: center;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 8px 0;
+    flex: none;
+    overflow: visible;
+}
+
+.nav-images-container img {
+    max-height: 48px;
+    max-width: 100px;
+    width: 100%;
+    object-fit: contain;
+    margin: 0;
+    border-radius: 4px;
+    background: #fff;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+
+@media (max-width: 768px) {
+    .nav-images-container {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(4, auto);
+        max-width: 320px;
+        gap: 8px 8px;
+    }
+    .nav-images-container img {
+        max-height: 28px;
+        max-width: 60px;
+    }
+}
+
+.main-nav ul {
+    list-style: none; /* Remove default bullet points */
+    margin: 0;
+    padding: 0;
+    display: flex; /* Arrange items horizontally */
+    flex-direction: row; /* Stack items horizontally */
+    align-items: center; /* Center items vertically */
+    flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+    justify-content: center; /* Center items, or use space-around for more spacing */
+}
+
+.main-nav ul li {
+    margin: 5px 10px; /* Spacing around each navigation item */
+}
+
+.main-nav ul li a {
+    text-decoration: none; /* Remove underline from links */
+    color: #333; /* Dark grey color for text */
+    padding: 8px 15px; /* Padding within each link */
+    display: block; /* Make the entire area of li clickable */
+    border-radius: 4px; /* Slightly rounded corners for links */
+    font-weight: 500; /* Medium font weight */
+}
+
+.main-nav ul li a:hover {
+    background-color: #e9ecef; /* Background color on hover */
+    color: #007bff; /* Text color on hover */
+}
+
+.main-nav ul li a .fas { /* Style for dropdown icons */
+    margin-left: 5px;
+    font-size: 0.8em;
+}
+
+/* Prevent G-20 nav item from wrapping */
+.main-nav ul li a.g20-nowrap {
+    white-space: nowrap;
+}
+
+/* Mobile Menu Button */
+.mobile-menu-btn {
+    background: #007bff !important;
+    color: white !important;
+    border: none !important;
+    padding: 12px 16px !important;
+    border-radius: 5px !important;
+    cursor: pointer !important;
+    font-size: 18px !important;
+    margin-top: 10px !important;
+    width: 100% !important;
+    text-align: center !important;
+}
+
+.mobile-menu-btn:hover {
+    background: #0056b3 !important;
+}
+
+/* Hero Banner */
+.hero-banner {
+    position: relative;
+    height: 400px;
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+
+.banner-slider {
+    position: relative;
+    height: 100%;
+}
+
+.banner-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.banner-slide.active {
+    opacity: 1;
+}
+
+.banner-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.banner-controls {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    transform: translateY(-50%);
+}
+
+.banner-controls button {
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s;
+}
+
+.banner-controls button:hover {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+/* Ministers Section */
+.ministers {
+    background-color: #f8f9fa;
+    padding: 40px 0;
+    margin-bottom: 30px;
+}
+
+.minister-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.minister-card {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.minister-card:hover {
+    transform: translateY(-5px);
+}
+
+.minister-card img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    object-fit: cover;
+}
+
+.minister-card h3 {
+    color: #003d82;
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.minister-card h4 {
+    color: #007bff;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.minister-card p {
+    color: #666;
+    font-size: 14px;
+}
+
+/* Compact and visually appealing content grid */
+.content-grid {
+    padding: 24px 0 10px 0; /* Less vertical space */
+    margin-bottom: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.grid-layout {
+    display: grid;
+    grid-template-columns: 1.1fr 2fr 1.1fr; /* Slightly more space for side columns */
+    gap: 18px; /* Tighter gap */
+    align-items: start;
+    min-height: 480px;
+}
+
+.left-column section,
+.center-column,
+.right-column section {
+    padding: 16px 14px;
+    border-radius: 10px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+    margin-bottom: 12px;
+}
+
+.initiative-content img,
+.agri-reforms img,
+.farming-agreement img {
+    width: 100%;
+    max-width: 220px;
+    height: auto;
+    max-height: 140px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin: 0 auto 10px auto;
+    display: block;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    background: #f8f8f8;
+}
+
+.center-column {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 100%;
+}
+
+.center-column > section.agri-news {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.news-list {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    max-height: none;
+}
+
+@media (max-width: 1024px) {
+    .grid-layout {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    .left-column section,
+    .center-column,
+    .right-column section {
+        padding: 12px 6px;
+    }
+    .initiative-content img,
+    .agri-reforms img,
+    .farming-agreement img {
+        max-width: 100%;
+        max-height: 110px;
+    }
+}
+
+/* Footer */
+footer {
+    background-color: #003d82; /* Dark blue background */
+    color: white;
+    padding: 20px 0;
+    margin-top: 30px;
+}
+
+.footer-content {
+    display: flex; /* Arrange sections horizontally */
+    justify-content: space-between; /* Distribute space between sections */
+    flex-wrap: wrap; /* Allow sections to wrap on smaller screens */
+    gap: 20px; /* Space between footer sections */
+}
+
+.footer-section {
+    flex: 1; /* Allow sections to grow and fill available space */
+    min-width: 200px; /* Minimum width for each section */
+    margin-bottom: 20px; /* Space below each section when wrapped */
+}
+
+.footer-section h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #0056b3; /* Lighter blue for separator */
+    padding-bottom: 10px;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li a {
+    color: #e0e0e0; /* Lighter text color for links */
+    text-decoration: none;
+    display: block;
+    margin-bottom: 8px;
+    transition: color 0.3s;
+}
+
+.footer-section ul li a:hover {
+    color: #fff; /* White on hover */
+    text-decoration: underline;
+}
+
+.footer-section p {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 10px;
+    color: #e0e0e0; /* Lighter text color */
+}
+
+.social-links a {
+    color: white;
+    font-size: 20px;
+    margin-right: 15px;
+    transition: color 0.3s;
+}
+
+.social-links a:hover {
+    color: #00aaff; /* Bright blue for social icon hover */
+}
+
+.footer-logos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.footer-logos img {
+    max-height: 30px;
+    max-width: 60px;
+    object-fit: contain;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+}
+
+.footer-logos img:hover {
+    opacity: 1;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    margin-top: 0px;
+    border-top: 1px solid #0056b3; /* Lighter blue for separator */
+    font-size: 13px;
+    color: #c0c0c0; /* Even lighter text for copyright */
+}
+
+/* Special Programs */
+.special-programs {
+    background: linear-gradient(135deg, #f8f9fa 60%, #e0cba8 100%);
+    padding: 50px 0 60px 0;
+    margin-top: 20px;
+    border-radius: 0 0 30px 30px;
+    padding-bottom: 20px; /* was 60px */
+    box-shadow: 0 8px 32px rgba(122,82,40,0.08);
+}
+
+.programs-grid {
+    display: flex;
+    gap: 32px;
+    justify-content: space-evenly;
+}
+
+.program-item {
+    background: #fff;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(122,82,40,0.10);
+    transition: transform 0.25s, box-shadow 0.25s;
+    border: 2px solid #e0cba8;
+    position: relative;
+}
+
+.program-item:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 8px 32px rgba(122,82,40,0.18);
+    border-color: #7a5228;
+    z-index: 2;
+}
+
+.program-item a {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    height: 100%;
+}
+
+.program-content {
+    text-align: center;
+    background: linear-gradient(120deg, #fffbe6 60%, #f5e3c3 100%);
+    color: #7a5228;
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: background 0.3s;
+}
+
+.program-item:hover .program-content {
+    background: linear-gradient(120deg, #f5e3c3 60%, #fffbe6 100%);
+    color: #4d320f;
+}
+
+.program-content h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: capitalize;
+    letter-spacing: 0.5px;
+    margin: 0;
+    margin-bottom: 0;
+    line-height: 1.3;
+    transition: color 0.3s;
+}
+
+
+.program-item:hover::before {
+    color: #ffd700;
+    opacity: 0.32;
+}
+
+@media (max-width: 600px) {
+    .special-programs {
+        padding: 30px 0 30px 0;
+        border-radius: 0 0 18px 18px;
+    }
+    .programs-grid {
+        gap: 16px;
+    }
+    .program-content {
+        padding: 22px 8px 18px 8px;
+        min-height: 80px;
+    }
+    .program-content h3 {
+        font-size: 1rem;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .grid-layout {
+        grid-template-columns: 1fr;
+    }
+    
+    .left-column, .right-column {
+        order: 2;
+    }
+    
+    .center-column {
+        order: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+    
+    .logo-section {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .nav-images-container {
+        max-width: 100%; /* Allow full width on mobile */
+        justify-content: center; /* Center images on mobile */
+        flex-wrap: wrap; /* Allow wrapping on mobile */
+    }
+    
+    .nav-images-container img {
+        max-height: 25px; /* Even smaller on mobile */
+        max-width: 50px;
+    }
+    
+    .main-nav {
+        display: none;
+    }
+    
+    .main-nav.show {
+        display: block;
+    }
+    
+    .main-nav ul li a {
+        padding: 15px 20px;
+        font-size: 16px;
+    }
+    
+    .minister-cards {
+        grid-template-columns: 1fr;
+    }
+    
+    .banner-controls {
+        display: none;
+    }
+    
+    .ministry-info h1 {
+        font-size: 20px;
+    }
+    
+    .ministry-info h2 {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    .gov-links {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+    
+    .quick-links {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .programs-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .hero-banner {
+        height: 250px;
+    }
+}
+
+/* Animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate {
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+/* Custom Scrollbar */
+.news-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.news-list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+.news-list::-webkit-scrollbar-thumb {
+    background: #007bff;
+    border-radius: 3px;
+}
+
+.news-list::-webkit-scrollbar-thumb:hover {
+    background: #0056b3;
+}
+
+/* New Initiatives Section */
+.new-initiatives {
+    background-color: #f4f9f4;
+    padding: 40px 0;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.initiative-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.initiative-content img {
+    flex: 1 1 auto;
+    width: 100%;
+    max-width: 100%;
+    height: 220px;
+    max-height: 320px;
+    min-height: 160px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+    background: #f8f8f8;
+}
+
+@media (max-width: 1024px) {
+    .initiative-content img {
+        height: 160px;
+        max-height: 200px;
+        min-height: 100px;
+    }
+}
+
+/* Schemes Page Specific Styles */
+.schemes-list {
+    padding: 20px 0;
+}
+
+.schemes-list h2 {
+    font-size: 2em;
+    color: #0056b3; /* Dark blue for heading */
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #0056b3;
+    text-align: center;
+}
+
+.schemes-list ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
+    gap: 20px; /* Space between cards */
+    align-items: stretch; /* Ensures all items in a row have the same height */
+}
+
+.schemes-list li {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Pushes read more to bottom */
+}
+
+.schemes-list h3 {
+    color: #0056b3;
+    margin-bottom: 10px;
+}
+
+.schemes-list p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #555;
+    flex-grow: 1; /* Allows description to take available space */
+}
+
+.read-more {
+    display: inline-block;
+    margin-top: 10px;
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+    align-self: flex-start; /* Aligns button to the start */
+}
+
+.read-more:hover {
+    text-decoration: underline;
+}
+
+.scheme-description {
+    margin-bottom: 10px;
+    max-height: 60px; /* Adjust as needed to show a few lines */
+    overflow: hidden;
+    position: relative;
+    transition: max-height 0.3s ease-out;
+}
+
+.scheme-description.active {
+    max-height: 500px; /* Or a sufficiently large value to show full content */
+    overflow: visible;
+}
+
+.scheme-description::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30px; /* Gradient height */
+    background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,1));
+    pointer-events: none; /* Allow clicking through */
+}
+
+.scheme-description.active::after {
+    display: none;
+}
+
+/* Overlay styles */
+.scheme-overlay {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto; /* Enable scrolling for long content */
+    padding: 20px;
+}
+
+.scheme-overlay.active {
+    display: flex;
+}
+
+.scheme-overlay-content {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 800px;
+    width: 90%;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+    transform: scale(0.9); /* Initial scale for animation */
+    opacity: 0;
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+}
+
+.scheme-overlay.active .scheme-overlay-content {
+    transform: scale(1); /* Scale up on active */
+    opacity: 1;
+}
+
+.scheme-overlay-content h3 {
+    color: #0056b3;
+    margin-bottom: 15px;
+    font-size: 1.8em;
+}
+
+.scheme-overlay-content p {
+    font-size: 1.1em;
+    line-height: 1.7;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.close-overlay {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 2em;
+    color: #555;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.close-overlay:hover {
+    color: #000;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .schemes-list h2 {
+        font-size: 1.8em;
+    }
+    .schemes-list li h3 {
+        font-size: 1.3em;
+    }
+    .schemes-list li p {
+        font-size: 0.95em;
+    }
+    .scheme-overlay-content {
+        padding: 20px;
+    }
+    .scheme-overlay-content h3 {
+        font-size: 1.5em;
+    }
+    .scheme-overlay-content p {
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 480px) {
+    .schemes-list h3 {
+        font-size: 1.2em;
+    }
+
+    .schemes-list p {
+        font-size: 0.9em;
+    }
+    .scheme-overlay-content {
+        width: 95%;
+    }
+}
+
+/* Footer Styles */
+.footer-section {
+    flex: 1; /* Allow sections to grow and fill available space */
+    min-width: 200px; /* Minimum width for each section */
+    margin-bottom: 20px; /* Space below each section when wrapped */
+}
+
+.footer-section h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #0056b3; /* Lighter blue for separator */
+    padding-bottom: 10px;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li a {
+    color: #e0e0e0; /* Lighter text color for links */
+    text-decoration: none;
+    display: block;
+    margin-bottom: 8px;
+    transition: color 0.3s;
+}
+
+.footer-section ul li a:hover {
+    color: #fff; /* White on hover */
+    text-decoration: underline;
+}
+
+.footer-section p {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 10px;
+    color: #e0e0e0; /* Lighter text color */
+}
+
+.social-links a {
+    color: white;
+    font-size: 20px;
+    margin-right: 15px;
+    transition: color 0.3s;
+}
+
+.social-links a:hover {
+    color: #00aaff; /* Bright blue for social icon hover */
+}
+
+.footer-logos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.footer-logos img {
+    max-height: 30px;
+    max-width: 60px;
+    object-fit: contain;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+}
+
+.footer-logos img:hover {
+    opacity: 1;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    margin-top: 0px;
+    border-top: 1px solid #0056b3; /* Lighter blue for separator */
+    font-size: 13px;
+    color: #c0c0c0; /* Even lighter text for copyright */
+}
+
+/* Special Programs */
+.special-programs {
+    background: linear-gradient(135deg, #f8f9fa 60%, #e0cba8 100%);
+    padding: 50px 0 60px 0;
+    margin-top: 20px;
+    border-radius: 0 0 30px 30px;
+    padding-bottom: 20px; /* was 60px */
+    box-shadow: 0 8px 32px rgba(122,82,40,0.08);
+}
+
+.programs-grid {
+    display: flex;
+    gap: 32px;
+    justify-content: space-evenly;
+}
+
+.program-item {
+    background: #fff;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(122,82,40,0.10);
+    transition: transform 0.25s, box-shadow 0.25s;
+    border: 2px solid #e0cba8;
+    position: relative;
+}
+
+.program-item:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 8px 32px rgba(122,82,40,0.18);
+    border-color: #7a5228;
+    z-index: 2;
+}
+
+.program-item a {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    height: 100%;
+}
+
+.program-content {
+    text-align: center;
+    background: linear-gradient(120deg, #fffbe6 60%, #f5e3c3 100%);
+    color: #7a5228;
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: background 0.3s;
+}
+
+.program-item:hover .program-content {
+    background: linear-gradient(120deg, #f5e3c3 60%, #fffbe6 100%);
+    color: #4d320f;
+}
+
+.program-content h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: capitalize;
+    letter-spacing: 0.5px;
+    margin: 0;
+    margin-bottom: 0;
+    line-height: 1.3;
+    transition: color 0.3s;
+}
+
+
+.program-item:hover::before {
+    color: #ffd700;
+    opacity: 0.32;
+}
+
+@media (max-width: 600px) {
+    .special-programs {
+        padding: 30px 0 30px 0;
+        border-radius: 0 0 18px 18px;
+    }
+    .programs-grid {
+        gap: 16px;
+    }
+    .program-content {
+        padding: 22px 8px 18px 8px;
+        min-height: 80px;
+    }
+    .program-content h3 {
+        font-size: 1rem;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .grid-layout {
+        grid-template-columns: 1fr;
+    }
+    
+    .left-column, .right-column {
+        order: 2;
+    }
+    
+    .center-column {
+        order: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+    
+    .logo-section {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .nav-images-container {
+        max-width: 100%; /* Allow full width on mobile */
+        justify-content: center; /* Center images on mobile */
+        flex-wrap: wrap; /* Allow wrapping on mobile */
+    }
+    
+    .nav-images-container img {
+        max-height: 25px; /* Even smaller on mobile */
+        max-width: 50px;
+    }
+    
+    .main-nav {
+        display: none;
+    }
+    
+    .main-nav.show {
+        display: block;
+    }
+    
+    .main-nav ul li a {
+        padding: 15px 20px;
+        font-size: 16px;
+    }
+    
+    .minister-cards {
+        grid-template-columns: 1fr;
+    }
+    
+    .banner-controls {
+        display: none;
+    }
+    
+    .ministry-info h1 {
+        font-size: 20px;
+    }
+    
+    .ministry-info h2 {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    .gov-links {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+    
+    .quick-links {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .programs-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .hero-banner {
+        height: 250px;
+    }
+}
+
+/* Animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate {
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+/* Custom Scrollbar */
+.news-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.news-list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+.news-list::-webkit-scrollbar-thumb {
+    background: #007bff;
+    border-radius: 3px;
+}
+
+.news-list::-webkit-scrollbar-thumb:hover {
+    background: #0056b3;
+}
+
+/* New Initiatives Section */
+.new-initiatives {
+    background-color: #f4f9f4;
+    padding: 40px 0;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.initiative-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.initiative-content img {
+    flex: 1 1 auto;
+    width: 100%;
+    max-width: 100%;
+    height: 220px;
+    max-height: 320px;
+    min-height: 160px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+    background: #f8f8f8;
+}
+
+@media (max-width: 1024px) {
+    .initiative-content img {
+        height: 160px;
+        max-height: 200px;
+        min-height: 100px;
+    }
+}
+.schemes-list ul li {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%; /* Ensure all cards in a row take up the same height */
+}
+
+.schemes-list ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    align-items: stretch; /* This is key to making items in a row the same height */
+}
