@@ -1,6 +1,4 @@
-// DOM Content Loaded
 document.addEventListener('DOMContentLoaded', function() {
-    // Banner Slider Functionality
     const bannerSlider = document.querySelector('.banner-slider');
     const slides = document.querySelectorAll('.banner-slide');
     const prevBtn = document.querySelector('.prev-btn');
@@ -25,19 +23,17 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function startSlideshow() {
-        slideInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
+        slideInterval = setInterval(nextSlide, 5000);
     }
 
     function stopSlideshow() {
         clearInterval(slideInterval);
     }
 
-    // Initialize slider
     if (slides.length > 0) {
         showSlide(0);
         startSlideshow();
 
-        // Event listeners for navigation buttons
         if (nextBtn) {
             nextBtn.addEventListener('click', () => {
                 stopSlideshow();
@@ -54,12 +50,10 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
 
-        // Pause slideshow on hover
         bannerSlider.addEventListener('mouseenter', stopSlideshow);
         bannerSlider.addEventListener('mouseleave', startSlideshow);
     }
 
-    // Hero Banner Auto-Slider
     function startBannerSlider() {
         const slides = document.querySelectorAll('.banner-slide');
         let current = 0;
@@ -71,7 +65,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 3000);
     }
 
-    // Font Size Controls
     const fontSizeControls = document.querySelectorAll('.font-size');
     let currentFontSize = 16;
 
@@ -90,25 +83,20 @@ document.addEventListener('DOMContentLoaded', function() {
             
             document.body.style.fontSize = currentFontSize + 'px';
             
-            // Store preference in localStorage
             localStorage.setItem('preferredFontSize', currentFontSize);
         });
     });
 
-    // Load saved font size preference
     const savedFontSize = localStorage.getItem('preferredFontSize');
     if (savedFontSize) {
         currentFontSize = parseInt(savedFontSize);
         document.body.style.fontSize = currentFontSize + 'px';
-    }    // Bilingual Language Switching System
-    const translations = {
+    }    const translations = {
         hindi: {
-            // Header Content
             'DEPARTMENT OF AGRICULTURE & FARMERS WELFARE': 'कृषि एवं किसान कल्याण विभाग',
             'GOVERNMENT OF INDIA': 'भारत सरकार',
             'MINISTRY OF AGRICULTURE & FARMERS WELFARE': 'कृषि एवं किसान कल्याण मंत्रालय',
             
-            // Navigation Menu
             'About Us': 'हमारे बारे में',
             'Divisions': 'प्रभाग',
             'Acts & Rules': 'अधिनियम एवं नियम',
@@ -122,11 +110,9 @@ document.addEventListener('DOMContentLoaded', function() {
             'Related Links': 'सम्बंधित लिंक्स',
             'Downloads': 'डाउनलोड',
 
-            // Ministers
             'Hon\'ble Minister of Agriculture & Farmers Welfare': 'माननीय कृषि एवं किसान कल्याण मंत्री',
             'Hon\'ble State Minister': 'माननीय राज्य मंत्री',
 
-            // Content Sections
             'DA&FW Organization': 'डी ए & एफ डब्ल्यू संगठन',
             'DA&FW is organized into 27 divisions and five attached offices and twenty one subordinate offices spread across the country for coordination with state level agencies and implementation of centrally sponsored schemes in their respective areas.': 'डी ए & एफ डब्ल्यू 27 प्रभागों में संगठित और पांच संलग्न कार्यालयों और इक्कीस अधीनस्थ कार्यालयों जो राज्य स्तर की एजेंसियों और अपने संबंधित क्षेत्रों में केन्द्रीय क्षेत्र की योजनाओं के कार्यान्वयन के साथ समन्वय के लिए देश भर में फैले हुए हैं।',
             'New Initiatives': 'नई पहल',
@@ -134,12 +120,10 @@ document.addEventListener('DOMContentLoaded', function() {
             'Read More': 'और देखें',
             'Krishi Geet': 'कृषि गीत',
 
-            // Agricultural News
             'Agricultural News': 'कृषि समाचार',
             'Previous': 'पिछला',
             'Next': 'अगला',
 
-            // Agricultural Reforms
             'Agricultural Reforms': 'कृषि सुधार',
             'Budget 2022-23 Webinar': 'बजट 2022-23 वेबिनार',
             'E-Collection of published articles on Agricultural Reform Act 2020': 'कृषि सुधार अधिनियम 2020 पर प्रकाशित लेखों का ई-संग्रह',
@@ -147,17 +131,14 @@ document.addEventListener('DOMContentLoaded', function() {
             'S.O.P for Drones': 'ड्रोन के लिए एस.ओ.पी',
             'Guidelines for Agriculture Infrastructure Fund in Hindi': 'एग्रीकल्चर इन्फ्रास्ट्रक्चर फंड की हिंदी में दिशा-निर्देश',
 
-            // Farming Agreement
             'Farming Agreement': 'कृषि समझौता',
             'Model Agriculture Agreement Banana': 'मॉडल कृषि करार केला',
             'Model Farming Agreement on Banana in Regional Languages': 'क्षेत्रीय भाषाओं में केले पर मॉडल खेती समझौता',
             'Farmer Welfare': 'किसान कल्याण',
             'MoU on developing proof of concepts on farmers database': 'किसानों के डेटाबेस पर अवधारणाओं के प्रमाण विकसित करने पर समझौता ज्ञापन',
 
-            // Social Media
             'Social Media': 'सोशल मीडिया',
 
-            // Footer
             'Quick Links': 'त्वरित लिंक',
             'Home': 'होम',
             'Contact Us': 'संपर्क करें',
@@ -166,19 +147,16 @@ document.addEventListener('DOMContentLoaded', function() {
             'Follow Us': 'हमें फॉलो करें',
             'All Rights Reserved': 'सभी अधिकार सुरक्षित',
 
-            // Accessibility
             'Skip to Main Content': 'मुख्य सामग्री पर जाएं',
             'Screen Reader Access': 'स्क्रीन रीडर एक्सेस',
             'Search': 'खोजें'
         },
 
         english: {
-            // Header Content
             'कृषि एवं किसान कल्याण विभाग': 'DEPARTMENT OF AGRICULTURE & FARMERS WELFARE',
             'भारत सरकार': 'GOVERNMENT OF INDIA',
             'कृषि एवं किसान कल्याण मंत्रालय': 'MINISTRY OF AGRICULTURE & FARMERS WELFARE',
             
-            // Navigation Menu
             'हमारे बारे में': 'About Us',
             'प्रभाग': 'Divisions',
             'अधिनियम एवं नियम': 'Acts & Rules',
@@ -192,11 +170,9 @@ document.addEventListener('DOMContentLoaded', function() {
             'सम्बंधित लिंक्स': 'Related Links',
             'डाउनलोड': 'Downloads',
 
-            // Ministers
             'माननीय कृषि एवं किसान कल्याण मंत्री': 'Hon\'ble Minister of Agriculture & Farmers Welfare',
             'माननीय राज्य मंत्री': 'Hon\'ble State Minister',
 
-            // Content Sections
             'डी ए & एफ डब्ल्यू संगठन': 'DA&FW Organization',
             'डी ए & एफ डब्ल्यू 27 प्रभागों में संगठित और पांच संलग्न कार्यालयों और इक्कीस अधीनस्थ कार्यालयों जो राज्य स्तर की एजेंसियों और अपने संबंधित क्षेत्रों में केन्द्रीय क्षेत्र की योजनाओं के कार्यान्वयन के साथ समन्वय के लिए देश भर में फैले हुए हैं।': 'DA&FW is organized into 27 divisions and five attached offices and twenty one subordinate offices spread across the country for coordination with state level agencies and implementation of centrally sponsored schemes in their respective areas.',
             'कृषि गीत': 'Krishi Geet',
@@ -204,12 +180,10 @@ document.addEventListener('DOMContentLoaded', function() {
             'नया क्या है': 'What\'s New',
             'और देखें': 'Read More',
 
-            // Agricultural News
             'कृषि समाचार': 'Agricultural News',
             'prev': 'Previous',
             'next': 'Next',
 
-            // Agricultural Reforms
             'कृषि सुधार': 'Agricultural Reforms',
             'बजट 2022-23 वेबिनार': 'Budget 2022-23 Webinar',
             'कृषि सुधार अधिनियम 2020 पर प्रकाशित लेखों का ई-संग्रह': 'E-Collection of published articles on Agricultural Reform Act 2020',
@@ -217,17 +191,14 @@ document.addEventListener('DOMContentLoaded', function() {
             'ड्रोन के लिए एस.ओ.पी': 'S.O.P for Drones',
             'एग्रीकल्चर इन्फ्रास्ट्रक्चर फंड की हिंदी में दिशा-निर्देश': 'Guidelines for Agriculture Infrastructure Fund in Hindi',
 
-            // Farming Agreement
             'कृषि समझौता': 'Farming Agreement',
             'मॉडल कृषि करार केला': 'Model Agriculture Agreement Banana',
             'क्षेत्रीय भाषाओं में केले पर मॉडल खेती समझौता': 'Model Farming Agreement on Banana in Regional Languages',
             'किसान कल्याण': 'Farmer Welfare',
             'किसानों के डेटाबेस पर अवधारणाओं के प्रमाण विकसित करने पर समझौता ज्ञापन': 'MoU on developing proof of concepts on farmers database',
 
-            // Social Media
             'सोशल मीडिया': 'Social Media',
 
-            // Footer
             'त्वरित लिंक': 'Quick Links',
             'होम': 'Home',
             'संपर्क करें': 'Contact Us',
@@ -236,25 +207,20 @@ document.addEventListener('DOMContentLoaded', function() {
             'हमें फॉलो करें': 'Follow Us',
             'सभी अधिकार सुरक्षित': 'All Rights Reserved',
 
-            // Accessibility
             'मुख्य सामग्री पर जाएं': 'Skip to Main Content',
             'स्क्रीन रीडर एक्सेस': 'Screen Reader Access',
             'खोजें': 'Search'
         }
-    };    // Enhanced Language Switching Function
-    function switchLanguage(language) {
+    };    function switchLanguage(language) {
         const isHindi = language === 'हिंदी' || language === 'hindi';
         const translationMap = isHindi ? translations.hindi : translations.english;
         
-        // Update document language attribute
         document.documentElement.lang = isHindi ? 'hi' : 'en';
         
-        // Update title based on language
         document.title = isHindi ? 
             'कृषि एवं किसान कल्याण विभाग | कृषि एवं किसान कल्याण मंत्रालय | भारत सरकार' :
             'Department of Agriculture & Farmers Welfare | Ministry of Agriculture & Farmers Welfare | Government of India';
 
-        // Update ministry information
         const ministryInfo = document.querySelector('.ministry-info');
         if (ministryInfo && isHindi) {
             ministryInfo.innerHTML = `
@@ -274,7 +240,6 @@ document.addEventListener('DOMContentLoaded', function() {
             `;
         }
 
-        // Update navigation menu
         const navLinks = document.querySelectorAll('.main-nav a');
         navLinks.forEach(link => {
             const textEn = link.dataset.en;
@@ -285,30 +250,9 @@ document.addEventListener('DOMContentLoaded', function() {
             } else if (!isHindi && textEn) {
                 link.innerHTML = textEn;
             } else {
-                // Fallback for links without data attributes (though ideally all should have them)
-                // This part tries to maintain existing behavior if data attributes are missing
-                // For a cleaner implementation, ensure all nav links have data-en and data-hi
-                if (isHindi) {
-                    const hindiNavItems = [
-                        'हमारे बारे में', 'प्रभाग', 'अधिनियम एवं नियम', 'दस्तावेज़',
-                        'सांख्यिकी', 'योजनाएं', 'मार्केट इंटेलिजेंस रिपोर्ट', 'डैशबोर्ड',
-                        'भर्ती', 'मीडिया', 'सम्बंधित लिंक्स', 'डाउनलोड'
-                    ];
-                    // Attempt to find a match in a predefined list if data attributes are not present
-                    // This is a simplified fallback and might not cover all cases perfectly
-                    // Consider removing this block if all nav items are guaranteed to have data attributes
-                } else {
-                    const englishNavItems = [
-                        'About Us', 'Divisions', 'Acts & Rules', 'Documents',
-                        'Statistics', 'Schemes', 'Market Intelligence Report', 'Dashboard',
-                        'Recruitment', 'Media', 'Related Links', 'Downloads'
-                    ];
-                    // Similar fallback for English
-                }
             }
         });
 
-        // Update minister section
         const ministerCards = document.querySelectorAll('.minister-card p');
         if (isHindi) {
             const hindiMinisterTitles = [
@@ -334,25 +278,18 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
 
-        // Update content sections
         updateContentSections(isHindi);
         
-        // Update footer
         updateFooter(isHindi);
 
-        // Update accessibility elements
-        updateAccessibilityElements(isHindi);        // Store language preference
-        localStorage.setItem('preferredLanguage', language);
+        updateAccessibilityElements(isHindi);        localStorage.setItem('preferredLanguage', language);
         
-        // Announce language change for accessibility
         announceLanguageChange(isHindi ? 'Hindi' : 'English');
         
         console.log(`Language switched to: ${isHindi ? 'Hindi' : 'English'}`);
     }
 
-    // Helper function to update content sections
     function updateContentSections(isHindi) {
-        // Update organization info section
         const orgSection = document.querySelector('.org-info');
         if (orgSection && isHindi) {
             orgSection.innerHTML = `
@@ -368,31 +305,26 @@ document.addEventListener('DOMContentLoaded', function() {
             `;
         }
 
-        // Update new initiatives section
         const initiativesSection = document.querySelector('.new-initiatives h2');
         if (initiativesSection) {
             initiativesSection.textContent = isHindi ? 'नई पहल' : 'New Initiatives';
         }
 
-        // Update what's new section
         const whatsNewSection = document.querySelector('.whats-new h2');
         if (whatsNewSection) {
             whatsNewSection.textContent = isHindi ? 'नया क्या है' : 'What\'s New';
         }
 
-        // Update Krishi Geet section
         const krishiGeetSection = document.querySelector('.krishi-geet h2');
         if (krishiGeetSection) {
             krishiGeetSection.textContent = isHindi ? 'कृषि गीत' : 'Krishi Geet';
         }
 
-        // Update agricultural news section
         const agriNewsSection = document.querySelector('.agri-news h2');
         if (agriNewsSection) {
             agriNewsSection.textContent = isHindi ? 'कृषि समाचार' : 'Agricultural News';
         }
 
-        // Update pagination buttons
         const paginationButtons = document.querySelectorAll('.pagination button');
         paginationButtons.forEach(button => {
             if (button.textContent.includes('prev')) {
@@ -402,40 +334,29 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        // Update agricultural reforms section
         const reformsSection = document.querySelector('.agri-reforms h2');
         if (reformsSection) {
             reformsSection.textContent = isHindi ? 'कृषि सुधार' : 'Agricultural Reforms';
         }
 
-        // Update farming agreement section
         const farmingSection = document.querySelector('.farming-agreement h2');
         if (farmingSection) {
             farmingSection.textContent = isHindi ? 'कृषि समझौता' : 'Farming Agreement';
-        }
-
-        // Update social media section
-        const socialSection = document.querySelector('.social-media h2');
+        }        const socialSection = document.querySelector('.social-media h2');
         if (socialSection) {
             socialSection.textContent = isHindi ? 'सोशल मीडिया' : 'Social Media';
         }
 
-        // Update all "Read More" links
+        // Update read more button text and reinitialize functionality
         const readMoreButtons = document.querySelectorAll('.read-more-btn');
-        readMoreButtons.forEach(button => {
-            button.addEventListener('click', function(event) {
-                event.preventDefault();
-                const description = this.previousElementSibling;
-                description.classList.toggle('active');
-                this.textContent = description.classList.contains('active') ? 'Read Less' : 'Read More';
-            });
-        });
         readMoreButtons.forEach(link => {
             link.textContent = isHindi ? 'और देखें' : 'Read More';
         });
+        
+        // Reinitialize read more functionality after language change
+        initializeReadMore();
     }
 
-    // Helper function to update footer
     function updateFooter(isHindi) {
         const footerSections = document.querySelectorAll('.footer-section h3');
         if (isHindi) {
@@ -454,7 +375,6 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
 
-        // Update footer contact information
         const contactSection = document.querySelectorAll('.footer-section p');
         if (contactSection.length >= 2) {
             if (isHindi) {
@@ -466,7 +386,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
 
-        // Update copyright text
         const footerBottom = document.querySelector('.footer-bottom p');
         if (footerBottom) {
             footerBottom.textContent = isHindi ? 
@@ -474,7 +393,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 '© 2024 Agriwelfare. All Rights Reserved.';
         }
 
-        // Update footer navigation links
         const footerLinks = document.querySelectorAll('.footer-section ul a');
         if (isHindi) {
             const hindiFooterLinks = ['होम', 'हमारे बारे में', 'योजनाएं', 'संपर्क करें'];
@@ -493,7 +411,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Helper function to update accessibility elements
     function updateAccessibilityElements(isHindi) {
         const skipLink = document.querySelector('a[href="#main-content"]');
         if (skipLink) {
@@ -511,19 +428,16 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Enhanced Language Switching with Loading States
     function addLanguageSwitchingEffects() {
         const languageSpans = document.querySelectorAll('.language-selector span');
         
         languageSpans.forEach(span => {
             span.addEventListener('click', function() {
-                // Add loading effect
                 const mainContent = document.querySelector('main');
                 if (mainContent) {
                     mainContent.classList.add('language-switching');
                 }
                 
-                // Remove loading effect after translation
                 setTimeout(() => {
                     if (mainContent) {
                         mainContent.classList.remove('language-switching');
@@ -533,10 +447,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Initialize language switching effects
     addLanguageSwitchingEffects();
 
-    // Add keyboard navigation for language selector
     const languageSelector = document.querySelector('.language-selector');
     if (languageSelector) {
         languageSelector.addEventListener('keydown', function(e) {
@@ -554,7 +466,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
         
-        // Make language spans focusable
         const spans = languageSelector.querySelectorAll('span');
         spans.forEach(span => {
             span.setAttribute('tabindex', '0');
@@ -563,7 +474,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Add language switching status announcement for screen readers
     function announceLanguageChange(language) {
         const announcement = document.createElement('div');
         announcement.setAttribute('aria-live', 'polite');
@@ -589,7 +499,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 1000);
     }
 
-    // Language Selector Event Listeners
     const languageSpans = document.querySelectorAll('.language-selector span');
     languageSpans.forEach(span => {
         span.addEventListener('click', function() {
@@ -600,13 +509,11 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Language Switcher Script
-function setLanguage(lang) {
+    function setLanguage(lang) {
     document.documentElement.setAttribute('lang', lang === 'hi' ? 'hi' : 'en');
     document.querySelectorAll('[data-en][data-hi]').forEach(function(el) {
         el.textContent = lang === 'hi' ? el.getAttribute('data-hi') : el.getAttribute('data-en');
     });
-    // Update active class on language selector
     document.querySelectorAll('.language-selector span').forEach(function(span) {
         if ((lang === 'hi' && span.textContent.includes('हिंदी')) || (lang === 'en' && span.textContent.includes('English'))) {
             span.classList.add('active');
@@ -617,7 +524,6 @@ function setLanguage(lang) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Default to English
     setLanguage('en');
     document.querySelectorAll('.language-selector span').forEach(function(span) {
         span.addEventListener('click', function() {
@@ -628,8 +534,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-});    // Load saved language preference
-    const savedLanguage = localStorage.getItem('preferredLanguage');
+});    const savedLanguage = localStorage.getItem('preferredLanguage');
     if (savedLanguage) {
         languageSpans.forEach(span => {
             if (span.textContent === savedLanguage) {
@@ -640,7 +545,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     } else {
-        // Default to English on first visit
         languageSpans.forEach(span => {
             if (span.textContent === 'English') {
                 span.classList.add('active');
@@ -651,7 +555,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Smooth Scrolling for Anchor Links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
@@ -665,7 +568,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // News Pagination
     const newsItems = document.querySelectorAll('.news-item');
     const itemsPerPage = 5;
     let currentPage = 1;
@@ -680,7 +582,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Initialize news pagination
     if (newsItems.length > itemsPerPage) {
         showNewsPage(1);
         
@@ -709,22 +610,18 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
         
-        // Set initial button states
         if (prevPageBtn) prevPageBtn.disabled = true;
         if (nextPageBtn) nextPageBtn.disabled = (totalPages === 1);
     }
 
-    // Dropdown Navigation (for future enhancement)
     const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
     dropdownToggles.forEach(toggle => {
         toggle.addEventListener('click', function(e) {
             e.preventDefault();
-            // Future: Add dropdown menu functionality
             console.log('Dropdown clicked:', this.textContent);
         });
     });
 
-    // Animation on Scroll
     const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -100px 0px'
@@ -738,12 +635,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }, observerOptions);
 
-    // Observe elements for animation
     const animateElements = document.querySelectorAll('.minister-card, .news-item, .program-item, section');
     animateElements.forEach(element => {
         observer.observe(element);
-    });    // Mobile Navigation Toggle
-    function createMobileMenu() {
+    });    function createMobileMenu() {
         const header = document.querySelector('.main-header .container');
         const nav = document.querySelector('.main-nav');
         
@@ -755,7 +650,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 header.appendChild(mobileMenuBtn);
                 
-                // Show/hide mobile menu button based on screen size
                 function toggleMobileButton() {
                     if (window.innerWidth <= 768) {
                         mobileMenuBtn.style.display = 'block';
@@ -770,7 +664,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 toggleMobileButton();
                 window.addEventListener('resize', toggleMobileButton);
                 
-                // Mobile menu toggle functionality
                 mobileMenuBtn.addEventListener('click', function() {
                     nav.classList.toggle('show');
                     const isVisible = nav.classList.contains('show');
@@ -785,11 +678,9 @@ document.addEventListener('DOMContentLoaded', function() {
     createMobileMenu();
     window.addEventListener('resize', createMobileMenu);
 
-    // External Links Handler
     const externalLinks = document.querySelectorAll('a[href^="http"]');
     externalLinks.forEach(link => {
         link.addEventListener('click', function(e) {
-            // Add target="_blank" for external links
             if (!this.getAttribute('target')) {
                 this.setAttribute('target', '_blank');
                 this.setAttribute('rel', 'noopener noreferrer');
@@ -797,18 +688,14 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Print Functionality (for PDF links)
     const pdfLinks = document.querySelectorAll('.pdf-link');
     pdfLinks.forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
-            // Simulate PDF download/view
             console.log('PDF link clicked:', this.textContent);
-            // In a real implementation, this would open the PDF
         });
     });
 
-    // Search Functionality (placeholder for future enhancement)
     function addSearchFunctionality() {
         const searchInput = document.createElement('input');
         searchInput.type = 'text';
@@ -826,7 +713,6 @@ document.addEventListener('DOMContentLoaded', function() {
         if (quickLinks && window.innerWidth > 768) {
             quickLinks.appendChild(searchInput);
             
-            // Show search on larger screens
             if (window.innerWidth > 768) {
                 searchInput.style.display = 'inline-block';
             }
@@ -835,9 +721,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     addSearchFunctionality();
 
-    // Accessibility Enhancements
     function enhanceAccessibility() {
-        // Add ARIA labels to interactive elements
         const buttons = document.querySelectorAll('button');
         buttons.forEach(button => {
             if (!button.getAttribute('aria-label')) {
@@ -846,7 +730,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        // Add focus styles for keyboard navigation
         const focusableElements = document.querySelectorAll('a, button, input, select, textarea');
         focusableElements.forEach(element => {
             element.addEventListener('focus', function() {
@@ -858,9 +741,23 @@ document.addEventListener('DOMContentLoaded', function() {
                 this.style.outline = 'none';
             });
         });
-    }
+    }    enhanceAccessibility();
 
-    enhanceAccessibility();
+    // Initialize read more functionality for scheme descriptions
+    initializeReadMore();
 
     console.log('Agriwelfare website initialized successfully');
 });
+
+// Function to initialize read more functionality
+function initializeReadMore() {
+    const readMoreButtons = document.querySelectorAll('.read-more-btn');
+    readMoreButtons.forEach(button => {
+        button.addEventListener('click', function(event) {
+            event.preventDefault();
+            const description = this.previousElementSibling;
+            description.classList.toggle('active');
+            this.textContent = description.classList.contains('active') ? 'Read Less' : 'Read More';
+        });
+    });
+}
